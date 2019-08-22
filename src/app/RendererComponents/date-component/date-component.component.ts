@@ -15,7 +15,7 @@ export class DateComponentComponent {
   }
 
   formatDate(date: string) {
-    // 2011-05-12T20:01:31.000 Z
+    // 2011-05-12T20:01:31.000Z
     const day = date.slice(8, 10);
     const month = date.slice(5, 7);
     const year = date.slice(0, 4);

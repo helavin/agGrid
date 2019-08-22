@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class UrlComponentComponent {
 
   private params: any;
+  private watch = 'https://www.youtube.com/watch?v=';
 
   agInit(params: any): void {
     this.params = params;
