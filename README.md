@@ -28,10 +28,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Git
 
-git remote add origin https://github.com/helavin/agGrid.git
+`git remote add origin https://github.com/helavin/agGrid.git`
 
-// git remote set-url origin https://github.com/helavin/agGrid.git
+// `git remote set-url origin https://github.com/helavin/agGrid.git`
 
---force решает!
-
-git push -u origin master --force
+--force решает! 
+`git push -u origin master --force`
