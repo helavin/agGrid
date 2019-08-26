@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AgGridModule } from 'ag-grid-angular';
+import 'ag-grid-enterprise';
+
 
 import { AppComponent } from './app.component';
 import { ReadService } from './read.service';
@@ -12,6 +14,7 @@ import { ImgComponentComponent } from './RendererComponents/img-component/img-co
 import { UrlComponentComponent } from './RendererComponents/url-component/url-component.component';
 import { TxtComponentComponent } from './RendererComponents/txt-component/txt-component.component';
 import { DateComponentComponent } from './RendererComponents/date-component/date-component.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 
 @NgModule({
@@ -21,16 +24,18 @@ import { DateComponentComponent } from './RendererComponents/date-component/date
     ImgComponentComponent,
     UrlComponentComponent,
     TxtComponentComponent,
-    DateComponentComponent
+    DateComponentComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule, FormsModule,
-    HttpClientModule,
+    HttpClientModule, // EnterpriseMenu,
     AgGridModule.withComponents([
       ImgComponentComponent,
       UrlComponentComponent,
       TxtComponentComponent,
-      DateComponentComponent
+      DateComponentComponent,
+      ToolbarComponent
     ]),
   ],
   providers: [ReadService],

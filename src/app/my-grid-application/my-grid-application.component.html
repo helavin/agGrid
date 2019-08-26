@@ -1,15 +1,22 @@
-<!-- <p>my-grid-application works!</p> -->
+<!-- <button (click)="getSelectedRows()">Get Selected Rows</button> -->
 <div style="width: 100%;">
     <ag-grid-angular #agGrid
         style="width: 100%; height: 500px;"
         class="ag-theme-balham"
         [gridOptions]="gridOptions"
         [rowData]="rowData | async"
-        [columnDefs]="columnDefs">
+        [columnDefs]="columnDefs"
+        rowSelection="multiple"
+        [allowContextMenuWithControlKey]="true"
+        [getContextMenuItems]="getContextMenuItems"
+        [icons]="icons"
+        [sideBar]="sideBar"
+        [frameworkComponents]="frameworkComponents"
+        (gridReady)="onGridReady($event)">
     </ag-grid-angular>
 </div>
 
-<h2>load datas</h2>
+<!-- <h2>load datas</h2>
 <ul *ngFor="let item of rowData | async">
     <li><time datetime="2017-02-14"></time>{{item.snippet.publishedAt}}</li>
-</ul>
+</ul> -->
