@@ -32,18 +32,24 @@ export class ToolbarComponent implements /*OnInit*/ IToolPanel {
   }
 
   updateTotals(): void {
+    let totalRecords = 0;
     let selectedRecords = 0;
     // let numSilver = 0;
     // let numBronze = 0;
 
     this.params.api.forEachNode((rowNode) => {
+      totalRecords += 1;
       const data = rowNode.data;
-      if (data.gold) { selectedRecords += data.gold; }
-      // if (data.silver) { numSilver += data.silver; }
-      // if (data.bronze) { numBronze += data.bronze; }
+      // const rn = rowNode.isSelected();
+      // console.log(rn);
+      if (/*data*/rowNode.isSelected()) {
+        selectedRecords += 1; // data.snippet.publishedAt;
+      }
+
     });
 
-    this.totalRecords = selectedRecords; // + numSilver + numBronze;
+    // console.log(selectedRecords);
+    this.totalRecords = totalRecords; // + numSilver + numBronze;
     this.selectedRecords = selectedRecords;
     // this.numSilver = numSilver;
     // this.numBronze = numBronze;

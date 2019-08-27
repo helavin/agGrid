@@ -14,7 +14,6 @@ import { DateComponentComponent } from '../RendererComponents/date-component/dat
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 
-
 @Component({
     selector: 'app-my-grid-application',
     templateUrl: './my-grid-application.component.html',
@@ -37,7 +36,7 @@ export class MyGridApplicationComponent implements OnInit {
 
     // public blogers: Array<any>; // IBloger[];
 
-    constructor(private readService: ReadService, private http: HttpClient) {
+    constructor(private readService: ReadService/*, private http: HttpClient*/) {
         this.gridOptions = {} as GridOptions;
         this.gridOptions.columnDefs = [
             {
@@ -58,6 +57,7 @@ export class MyGridApplicationComponent implements OnInit {
             {
                 headerName: 'Video Title', field: this.title,
                 cellRendererFramework: UrlComponentComponent,
+                cellRendererParams: 'https://www.youtube.com/watch?v=',
                 width: 400
             },
             {
@@ -126,22 +126,40 @@ export class MyGridApplicationComponent implements OnInit {
     // }
 
     getContextMenuItems(params) {
-        // params.Column = 'Video Title';
-        const result = [
-            'copy',
-            'copyWithHeaders',
-            'paste',
-            'separator',
-            {
-                name: 'Alert ' + params.value, // 'Open in new tab',
-                action: () => {
-                    // if (params.Column === 'Video Title') {
-                    window.alert('Alerting about ' + params.value);
-                    // }
-                },
-                cssClasses: ['redFont', 'bold']
-            }
-        ];
+        let result: any;
+        if (params.column.colDef.headerName === 'Video Title') {
+            result = [
+                'copy',
+                'copyWithHeaders',
+                'paste',
+                'separator',
+                {
+                    name: 'Open in new tab',
+                    action: () => {
+                        const url = params.column.colDef.cellRendererParams + params.value;
+                        window.open(url, '_blank');
+                        // window.open('https://www.youtube.com/watch?v=', '_blank');
+                    },
+                    cssClasses: ['redFont', 'bold']
+                }
+            ];
+
+        }
+        // const result = [
+        //     'copy',
+        //     'copyWithHeaders',
+        //     'paste',
+        //     'separator',
+        //     {
+        //         name: 'Alert ' + params.column.colDef.headerName, // .value, // 'Open in new tab',
+        //         action: () => {
+        //             // if (params.column.colDef.headerName === 'Video Title') {
+        //             window.alert('Alerting about ' + params.value);
+        //             // }
+        //         },
+        //         cssClasses: ['redFont', 'bold']
+        //     }
+        // ];
         return result;
     }
 
