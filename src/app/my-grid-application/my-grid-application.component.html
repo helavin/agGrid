@@ -6,13 +6,13 @@
         [gridOptions]="gridOptions"
         [rowData]="rowData | async"
         [columnDefs]="columnDefs"
-        rowSelection="multiple"
-        [allowContextMenuWithControlKey]="true"
-        [getContextMenuItems]="getContextMenuItems"
         [icons]="icons"
         [sideBar]="sideBar"
         [frameworkComponents]="frameworkComponents"
-        (gridReady)="onGridReady($event)">
+        rowSelection="multiple"
+        [allowContextMenuWithControlKey]="true"
+        [getContextMenuItems]="getContextMenuItems"
+        (selectionChanged)="onSelectionChanged($event)">
     </ag-grid-angular>
 </div>
 
@@ -20,3 +20,17 @@
 <ul *ngFor="let item of rowData | async">
     <li><time datetime="2017-02-14"></time>{{item.snippet.publishedAt}}</li>
 </ul> -->
+<p>{{selectedCount}}</p>
+<!-- <app-toolbar>
+    <h2>Добро пожаловать из gridApp {{name}}!</h2>
+</app-toolbar> -->
+
+<!-- <h2>Количество кликов: {{clicks}}</h2>
+<app-toolbar (changedBool)="onChanged($event)"></app-toolbar> -->
+
+
+
+<!-- <input type="text"
+    [(ngModel)]="name" />
+<input type="number"
+    [(ngModel)]="age" /> -->

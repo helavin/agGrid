@@ -1,6 +1,4 @@
-// import { Component, OnInit } from '@angular/core';
-import { Component, ViewChild, ViewContainerRef } from '@angular/core';
-
+import { Component /*, ViewChild, ViewContainerRef, Input, EventEmitter, Output*/ } from '@angular/core';
 import { IToolPanel, IToolPanelParams } from 'ag-grid-community';
 
 @Component({
@@ -8,15 +6,22 @@ import { IToolPanel, IToolPanelParams } from 'ag-grid-community';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements /*OnInit*/ IToolPanel {
+export class ToolbarComponent implements IToolPanel {
   private params: IToolPanelParams;
 
   private totalRecords: number;
   private selectedRecords: number;
-  // private numSilver: number;
-  // private numBronze: number;
+
+  // onSelectionChanged(event: any) {
+  //   const rowCount = this.params.api.getSelectedNodes().length;
+  //   const rowCountE = event.api.getSelectedNodes().length;
+  //   console.log(rowCount);
+  //   console.log(rowCountE);
+  // }
+
+  // @Output() changedBool = new EventEmitter<boolean>();
+
   refresh(): void {
-    // throw new Error('Method not implemented.');
   }
 
   agInit(params: IToolPanelParams): void {
@@ -24,35 +29,37 @@ export class ToolbarComponent implements /*OnInit*/ IToolPanel {
 
     this.totalRecords = 0;
     this.selectedRecords = 0;
-    // this.numSilver = 0;
-    // this.numBronze = 0;
 
-    // calculate stats when new rows loaded, i.e. onModelUpdated
     this.params.api.addEventListener('modelUpdated', this.updateTotals.bind(this));
   }
+
+  turnOnOff() {
+    const tmp = this.params.api;
+    // .gridColumnApi.setColumnVisible("", false); // .forEachNode((param) => {
+    // .columnController.
+
+
+    console.log(tmp);
+    // .setHeaderHeight(5); // .selectAll();
+  }
+  // change(increased: any) {
+  //   this.changedBool.emit(increased);
+  // }
 
   updateTotals(): void {
     let totalRecords = 0;
     let selectedRecords = 0;
-    // let numSilver = 0;
-    // let numBronze = 0;
 
     this.params.api.forEachNode((rowNode) => {
       totalRecords += 1;
-      const data = rowNode.data;
-      // const rn = rowNode.isSelected();
-      // console.log(rn);
-      if (/*data*/rowNode.isSelected()) {
-        selectedRecords += 1; // data.snippet.publishedAt;
-      }
 
+      if (rowNode.isSelected()) {
+        selectedRecords += 1;
+      }
     });
 
-    // console.log(selectedRecords);
-    this.totalRecords = totalRecords; // + numSilver + numBronze;
+    this.totalRecords = totalRecords;
     this.selectedRecords = selectedRecords;
-    // this.numSilver = numSilver;
-    // this.numBronze = numBronze;
   }
 
 }

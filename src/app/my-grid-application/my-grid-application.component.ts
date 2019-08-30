@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GridOptions, Column } from 'ag-grid-community';
-import { HttpClient, HttpResponseBase } from '@angular/common/http';
+// import { HttpClient, HttpResponseBase } from '@angular/common/http';
 // import { AgGridAngular } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 // import { Observable /*, Subject*/ } from 'rxjs';
@@ -21,19 +21,25 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 })
 export class MyGridApplicationComponent implements OnInit {
     private gridOptions: GridOptions;
-    // @ViewChild('agGrid') agGrid: AgGridAngular;
-    private gridApi;
-    private gridColumnApi;
+
+    // private agGrid: AgGridAngular;
+    // private gridApi;
+    // private gridColumnApi;
 
     // private icons;
     // private sideBar;
-    private frameworkComponents;
+    // private frameworkComponents;
 
     rowData: any;
     private thumbnails = 'snippet.thumbnails.default.url';
     private publishedAt = 'snippet.publishedAt';
     private title = 'id.videoId';
 
+    private selectedCount = 0;
+
+
+    // private toolbarComponent: ToolbarComponent;
+    // private clicks = 0;
     // public blogers: Array<any>; // IBloger[];
 
     constructor(private readService: ReadService/*, private http: HttpClient*/) {
@@ -52,7 +58,7 @@ export class MyGridApplicationComponent implements OnInit {
             {
                 headerName: 'Published on', field: this.publishedAt,
                 cellRendererFramework: DateComponentComponent,
-                width: 100, sortable: true // filter: true
+                width: 115, sortable: true // filter: true
             },
             {
                 headerName: 'Video Title', field: this.title,
@@ -89,10 +95,15 @@ export class MyGridApplicationComponent implements OnInit {
                     labelDefault: 'Toolbar',
                     labelKey: 'customStats',
                     iconKey: 'custom-stats',
-                    toolPanel: 'toolbarComponent'
+                    toolPanel: 'toolbarComponent',
+                    // toolPanelParams: {
+                    //     suppressRowGroups: true,
+                    //     suppressValues: true,
+                    // }
                 }
             ],
-            defaultToolPanel: 'customStats'
+            defaultToolPanel: 'customStats',
+
         };
         this.gridOptions.frameworkComponents = { toolbarComponent: ToolbarComponent };
     }
@@ -101,31 +112,19 @@ export class MyGridApplicationComponent implements OnInit {
         this.rowData = this.readService.read();
     }
 
-    onGridReady(params) {
-        this.gridApi = params.api;
-        this.gridColumnApi = params.columnApi;
 
-        //     // this.readService.read()
-        //     //     .subscribe(data => {
-        //     //         this.rowData = data;
-        //     //     });
-        // this.rowData = this.readService.read();
-
-        // action: () => {
-        // if (params.Column === 'Video Title') {
-        // window.alert('Alerting about ' + params.Column);
-        // }
-        // }
+    onSelectionChanged(event: any) {
+        const rowCount = event.api.getSelectedNodes().length;
+        this.selectedCount = rowCount;
+        this.gridOptions.columnApi.resetState();
     }
 
-    // getSelectedRows() {
-    //     const selectedNodes = this.agGrid.api.getSelectedNodes();
-    //     const selectedData = selectedNodes.map(node => node.data);
-    //     const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ');
-    //     alert(`Selected nodes: ${selectedDataStringPresentation}`);
+
+    // onChanged(increased: any) {
+    //     increased === true ? this.clicks++ : this.clicks--;
     // }
 
-    getContextMenuItems(params) {
+    getContextMenuItems(params: any) {
         let result: any;
         if (params.column.colDef.headerName === 'Video Title') {
             result = [
@@ -138,28 +137,12 @@ export class MyGridApplicationComponent implements OnInit {
                     action: () => {
                         const url = params.column.colDef.cellRendererParams + params.value;
                         window.open(url, '_blank');
-                        // window.open('https://www.youtube.com/watch?v=', '_blank');
                     },
                     cssClasses: ['redFont', 'bold']
                 }
             ];
 
         }
-        // const result = [
-        //     'copy',
-        //     'copyWithHeaders',
-        //     'paste',
-        //     'separator',
-        //     {
-        //         name: 'Alert ' + params.column.colDef.headerName, // .value, // 'Open in new tab',
-        //         action: () => {
-        //             // if (params.column.colDef.headerName === 'Video Title') {
-        //             window.alert('Alerting about ' + params.value);
-        //             // }
-        //         },
-        //         cssClasses: ['redFont', 'bold']
-        //     }
-        // ];
         return result;
     }
 

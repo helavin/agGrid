@@ -1,14 +1,17 @@
 <div style="text-align: center">
+
     <span>
         <h2><i class="fa fa-calculator"></i>Toolbar</h2>
-        <button class="btn btn-default"
-            type="button">on/off</button>
+        <button (click)="turnOnOff()">on/off</button>
+        <!-- class="btn btn-default" type="button" -->
 
         <dl style="font-size: large; padding: 30px 40px 10px 30px">
             <dt class="totalStyle">Total: <b>{{totalRecords}}</b></dt>
             <dt class="totalStyle">Selected: <b>{{selectedRecords}}</b></dt>
-            <!-- <dt class="totalStyle">Total Silver: <b>{{numSilver}}</b></dt>
-            <dt class="totalStyle">Total Bronze: <b>{{numBronze}}</b></dt> -->
         </dl>
     </span>
+
+    <!-- <button (click)="change(true)">+</button>
+    <button (click)="change(false)">-</button> -->
+
 </div>
