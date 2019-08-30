@@ -23,8 +23,8 @@ export class MyGridApplicationComponent implements OnInit {
     private gridOptions: GridOptions;
 
     // private agGrid: AgGridAngular;
-    // private gridApi;
-    // private gridColumnApi;
+    private gridApi;
+    private gridColumnApi;
 
     // private icons;
     // private sideBar;
@@ -46,28 +46,28 @@ export class MyGridApplicationComponent implements OnInit {
         this.gridOptions = {} as GridOptions;
         this.gridOptions.columnDefs = [
             {
-                headerName: '',
+                colId: '0', headerName: '',
                 checkboxSelection: true, headerCheckboxSelection: true,
                 width: 35
             },
             {
-                headerName: '', field: this.thumbnails,
+                colId: '1', headerName: '', field: this.thumbnails,
                 cellRendererFramework: ImgComponentComponent,
                 width: 100, autoHeight: true
             },
             {
-                headerName: 'Published on', field: this.publishedAt,
+                colId: '2', headerName: 'Published on', field: this.publishedAt,
                 cellRendererFramework: DateComponentComponent,
                 width: 115, sortable: true // filter: true
             },
             {
-                headerName: 'Video Title', field: this.title,
+                colId: '3', headerName: 'Video Title', field: this.title,
                 cellRendererFramework: UrlComponentComponent,
                 cellRendererParams: 'https://www.youtube.com/watch?v=',
                 width: 400
             },
             {
-                headerName: 'Description', field: 'snippet.description',
+                colId: '4', headerName: 'Description', field: 'snippet.description',
                 cellRendererFramework: TxtComponentComponent, minWidth: 200,
                 width: 400,
                 resizable: true, filter: true // autoHeight: true
@@ -111,12 +111,28 @@ export class MyGridApplicationComponent implements OnInit {
     ngOnInit() {
         this.rowData = this.readService.read();
     }
+    onGridReady(params) {
+        this.gridApi = params.api;
+        this.gridColumnApi = params.columnApi;
+
+        // params.api.addGlobalListener((type, event) => {
+        //     if (type.indexOf('column') >= 0) {
+        //       console.log('Got column event: ', event);
+        //     }
+        //   });
+
+    }
 
 
     onSelectionChanged(event: any) {
         const rowCount = event.api.getSelectedNodes().length;
         this.selectedCount = rowCount;
         this.gridOptions.columnApi.resetState();
+    }
+
+    showAthlete() {
+        this.gridColumnApi.setColumnVisible('0', false);
+        console.log('showAthlete');
     }
 
 

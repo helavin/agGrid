@@ -34,17 +34,18 @@ export class ToolbarComponent implements IToolPanel {
   }
 
   turnOnOff() {
-    const tmp = this.params.api;
-    // .gridColumnApi.setColumnVisible("", false); // .forEachNode((param) => {
-    // .columnController.
+    const cols = [];
 
+    for (let i = 1; i <= 4; i++) {
+      // const element = 4;
+      const tmp = this.params.api.getColumnDef(i.toString());
+      cols.push(tmp);
+    }
 
-    console.log(tmp);
+    this.params.api.setColumnDefs(cols);
+
     // .setHeaderHeight(5); // .selectAll();
   }
-  // change(increased: any) {
-  //   this.changedBool.emit(increased);
-  // }
 
   updateTotals(): void {
     let totalRecords = 0;

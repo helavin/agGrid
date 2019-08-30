@@ -12,8 +12,10 @@
         rowSelection="multiple"
         [allowContextMenuWithControlKey]="true"
         [getContextMenuItems]="getContextMenuItems"
-        (selectionChanged)="onSelectionChanged($event)">
+        (selectionChanged)="onSelectionChanged($event)"
+        (gridReady)="onGridReady($event)">
     </ag-grid-angular>
+    <button (click)="showAthlete()">Show Athlete</button>
 </div>
 
 <!-- <h2>load datas</h2>
