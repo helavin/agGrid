@@ -1,7 +1,6 @@
-<!-- <button (click)="getSelectedRows()">Get Selected Rows</button> -->
 <div style="width: 100%;">
     <ag-grid-angular #agGrid
-        style="width: 100%; height: 500px;"
+        style="width: 100%; height: 700px; padding: 5px;"
         class="ag-theme-balham"
         [gridOptions]="gridOptions"
         [rowData]="rowData | async"
@@ -10,29 +9,10 @@
         [sideBar]="sideBar"
         [frameworkComponents]="frameworkComponents"
         rowSelection="multiple"
+        suppressRowClickSelection="true"
         [allowContextMenuWithControlKey]="true"
         [getContextMenuItems]="getContextMenuItems"
         (selectionChanged)="onSelectionChanged($event)"
         (gridReady)="onGridReady($event)">
     </ag-grid-angular>
-    <button (click)="showAthlete()">Show Athlete</button>
 </div>
-
-<!-- <h2>load datas</h2>
-<ul *ngFor="let item of rowData | async">
-    <li><time datetime="2017-02-14"></time>{{item.snippet.publishedAt}}</li>
-</ul> -->
-<p>{{selectedCount}}</p>
-<!-- <app-toolbar>
-    <h2>Добро пожаловать из gridApp {{name}}!</h2>
-</app-toolbar> -->
-
-<!-- <h2>Количество кликов: {{clicks}}</h2>
-<app-toolbar (changedBool)="onChanged($event)"></app-toolbar> -->
-
-
-
-<!-- <input type="text"
-    [(ngModel)]="name" />
-<input type="number"
-    [(ngModel)]="age" /> -->

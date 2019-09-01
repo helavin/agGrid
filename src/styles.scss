@@ -2,17 +2,23 @@
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
 
+img {
+  width: 75px;
+  padding: 5px;
+}
+
 p,
 a {
-  // word-wrap: break-word;
-  // word-break: break-all;
-
-  // position: absolute;
-  // right: 0px;
-  // width: 300px;
-  padding-top: 10px;
-  // margin-top: 20px;
-  // text-indent: 50px;
   text-align: justify;
   letter-spacing: 2px;
+}
+
+.urlPadding,
+p {
+  padding-top: 10px;
+}
+
+.descriptionStyle {
+  white-space: normal;
+  padding-top: 3px;
 }

@@ -19,7 +19,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
     templateUrl: './my-grid-application.component.html',
     styleUrls: ['./my-grid-application.component.scss']
 })
-export class MyGridApplicationComponent implements OnInit {
+export class MyGridApplicationComponent { // implements OnInit {
     private gridOptions: GridOptions;
 
     // private agGrid: AgGridAngular;
@@ -37,28 +37,26 @@ export class MyGridApplicationComponent implements OnInit {
 
     private selectedCount = 0;
 
-
-    // private toolbarComponent: ToolbarComponent;
-    // private clicks = 0;
     // public blogers: Array<any>; // IBloger[];
 
-    constructor(private readService: ReadService/*, private http: HttpClient*/) {
+    constructor(private readService: ReadService) {
         this.gridOptions = {} as GridOptions;
         this.gridOptions.columnDefs = [
             {
-                colId: '0', headerName: '',
+                colId: '0', lockPosition: true,
                 checkboxSelection: true, headerCheckboxSelection: true,
                 width: 35
             },
             {
-                colId: '1', headerName: '', field: this.thumbnails,
+                colId: '1', headerName: '',
+                field: this.thumbnails,
                 cellRendererFramework: ImgComponentComponent,
-                width: 100, autoHeight: true
+                width: 100
             },
             {
                 colId: '2', headerName: 'Published on', field: this.publishedAt,
                 cellRendererFramework: DateComponentComponent,
-                width: 115, sortable: true // filter: true
+                width: 115
             },
             {
                 colId: '3', headerName: 'Video Title', field: this.title,
@@ -68,38 +66,20 @@ export class MyGridApplicationComponent implements OnInit {
             },
             {
                 colId: '4', headerName: 'Description', field: 'snippet.description',
-                cellRendererFramework: TxtComponentComponent, minWidth: 200,
-                width: 400,
-                resizable: true, filter: true // autoHeight: true
+                cellRendererFramework: TxtComponentComponent,
+                resizable: true, width: 600
             }
         ];
+        this.gridOptions.rowHeight = 60;
         this.gridOptions.icons = { 'custom-stats': '<span class="ag-icon ag-icon-custom-stats"></span>' };
         this.gridOptions.sideBar = {
             toolPanels: [
-                // {
-                //     id: 'columns',
-                //     labelDefault: 'Columns',
-                //     labelKey: 'columns',
-                //     iconKey: 'columns',
-                //     toolPanel: 'agColumnsToolPanel'
-                // },
-                // {
-                //     id: 'filters',
-                //     labelDefault: 'Filters',
-                //     labelKey: 'filters',
-                //     iconKey: 'filter',
-                //     toolPanel: 'agFiltersToolPanel'
-                // },
                 {
                     id: 'customStats',
                     labelDefault: 'Toolbar',
                     labelKey: 'customStats',
                     iconKey: 'custom-stats',
                     toolPanel: 'toolbarComponent',
-                    // toolPanelParams: {
-                    //     suppressRowGroups: true,
-                    //     suppressValues: true,
-                    // }
                 }
             ],
             defaultToolPanel: 'customStats',
@@ -108,12 +88,16 @@ export class MyGridApplicationComponent implements OnInit {
         this.gridOptions.frameworkComponents = { toolbarComponent: ToolbarComponent };
     }
 
-    ngOnInit() {
-        this.rowData = this.readService.read();
-    }
+
+
+    // ngOnInit() {
+    //     this.rowData = this.readService.read();
+    // }
     onGridReady(params) {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;
+
+        this.rowData = this.readService.read();
 
         // params.api.addGlobalListener((type, event) => {
         //     if (type.indexOf('column') >= 0) {
@@ -125,20 +109,10 @@ export class MyGridApplicationComponent implements OnInit {
 
 
     onSelectionChanged(event: any) {
-        const rowCount = event.api.getSelectedNodes().length;
-        this.selectedCount = rowCount;
-        this.gridOptions.columnApi.resetState();
+        this.selectedCount = event.api.getSelectedNodes().length;
+        this.gridOptions.columnApi.resetColumnState();
     }
 
-    showAthlete() {
-        this.gridColumnApi.setColumnVisible('0', false);
-        console.log('showAthlete');
-    }
-
-
-    // onChanged(increased: any) {
-    //     increased === true ? this.clicks++ : this.clicks--;
-    // }
 
     getContextMenuItems(params: any) {
         let result: any;
@@ -161,7 +135,6 @@ export class MyGridApplicationComponent implements OnInit {
         }
         return result;
     }
-
 
 
 

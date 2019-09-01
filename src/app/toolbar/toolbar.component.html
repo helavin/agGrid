@@ -1,17 +1,14 @@
 <div style="text-align: center">
-
     <span>
         <h2><i class="fa fa-calculator"></i>Toolbar</h2>
-        <button (click)="turnOnOff()">on/off</button>
-        <!-- class="btn btn-default" type="button" -->
-
-        <dl style="font-size: large; padding: 30px 40px 10px 30px">
-            <dt class="totalStyle">Total: <b>{{totalRecords}}</b></dt>
-            <dt class="totalStyle">Selected: <b>{{selectedRecords}}</b></dt>
-        </dl>
     </span>
-
-    <!-- <button (click)="change(true)">+</button>
-    <button (click)="change(false)">-</button> -->
-
+    <button (click)="toggleSelection()">toggle Selection</button>
+    <dl style="font-size: large; padding: 30px 40px 10px 30px">
+        <dt class="totalStyle">Total: <b>{{totalRecords}}</b></dt>
+        <dt class="totalStyle">Selected: <b>{{selectedRecords}}</b></dt>
+    </dl>
 </div>
+
+
+
+
