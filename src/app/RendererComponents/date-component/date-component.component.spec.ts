@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DateComponentComponent } from './date-component.component';
+// import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('DateComponentComponent', () => {
   let component: DateComponentComponent;
@@ -8,7 +9,8 @@ describe('DateComponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DateComponentComponent ]
+      declarations: [ DateComponentComponent ],
+      // schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
@@ -22,4 +24,5 @@ describe('DateComponentComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

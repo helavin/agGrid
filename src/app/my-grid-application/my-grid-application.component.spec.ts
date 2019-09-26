@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MyGridApplicationComponent } from './my-grid-application.component';
+import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 
 describe('MyGridApplicationComponent', () => {
   let component: MyGridApplicationComponent;
@@ -8,7 +9,8 @@ describe('MyGridApplicationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyGridApplicationComponent ]
+      declarations: [ MyGridApplicationComponent ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
