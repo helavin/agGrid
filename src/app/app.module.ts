@@ -11,8 +11,8 @@ import { AppComponent } from './app.component';
 import { ReadService } from './read.service';
 import { MyGridApplicationComponent } from './my-grid-application/my-grid-application.component';
 import { ImgComponent } from './RendererComponents/img/img.component';
-import { UrlComponentComponent } from './RendererComponents/url-component/url-component.component';
-import { TxtComponent } from './RendererComponents/txt-component/txt.component';
+import { UrlComponent } from './RendererComponents/url/url.component';
+import { TxtComponent } from './RendererComponents/txt/txt.component';
 import { DateComponent } from './RendererComponents/date/date.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
@@ -22,7 +22,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     AppComponent,
     MyGridApplicationComponent,
     ImgComponent,
-    UrlComponentComponent,
+    UrlComponent,
     TxtComponent,
     DateComponent,
     ToolbarComponent
@@ -32,7 +32,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     HttpClientModule, // EnterpriseMenu,
     AgGridModule.withComponents([
       ImgComponent,
-      UrlComponentComponent,
+      UrlComponent,
       TxtComponent,
       DateComponent,
       ToolbarComponent

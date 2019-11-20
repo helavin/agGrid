@@ -8,8 +8,8 @@ import 'ag-grid-enterprise';
 // import { IBloger } from '../bloger';
 import { ReadService } from '../read.service';
 import { ImgComponent } from '../RendererComponents/img/img.component';
-import { UrlComponentComponent } from '../RendererComponents/url-component/url-component.component';
-import { TxtComponent } from '../RendererComponents/txt-component/txt.component';
+import { UrlComponent } from '../RendererComponents/url/url.component';
+import { TxtComponent } from '../RendererComponents/txt/txt.component';
 import { DateComponent } from '../RendererComponents/date/date.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
@@ -60,7 +60,7 @@ export class MyGridApplicationComponent { // implements OnInit {
             },
             {
                 colId: '3', headerName: 'Video Title', field: this.title,
-                cellRendererFramework: UrlComponentComponent,
+                cellRendererFramework: UrlComponent,
                 cellRendererParams: 'https://www.youtube.com/watch?v=',
                 width: 400
             },

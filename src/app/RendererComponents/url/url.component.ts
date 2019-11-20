@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-url-component',
-  templateUrl: './url-component.component.html',
-  styleUrls: ['./url-component.component.scss']
+  templateUrl: './url.component.html',
+  styleUrls: ['./url.component.scss']
 })
-export class UrlComponentComponent {
+export class UrlComponent {
 
   private params: any;
   private watch = 'https://www.youtube.com/watch?v=';
