@@ -10,9 +10,9 @@ import 'ag-grid-enterprise';
 import { AppComponent } from './app.component';
 import { ReadService } from './read.service';
 import { MyGridApplicationComponent } from './my-grid-application/my-grid-application.component';
-import { ImgComponentComponent } from './RendererComponents/img-component/img-component.component';
+import { ImgComponent } from './RendererComponents/img/img.component';
 import { UrlComponentComponent } from './RendererComponents/url-component/url-component.component';
-import { TxtComponentComponent } from './RendererComponents/txt-component/txt-component.component';
+import { TxtComponent } from './RendererComponents/txt-component/txt.component';
 import { DateComponent } from './RendererComponents/date/date.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
@@ -21,9 +21,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
   declarations: [
     AppComponent,
     MyGridApplicationComponent,
-    ImgComponentComponent,
+    ImgComponent,
     UrlComponentComponent,
-    TxtComponentComponent,
+    TxtComponent,
     DateComponent,
     ToolbarComponent
   ],
@@ -31,9 +31,9 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     BrowserModule, FormsModule,
     HttpClientModule, // EnterpriseMenu,
     AgGridModule.withComponents([
-      ImgComponentComponent,
+      ImgComponent,
       UrlComponentComponent,
-      TxtComponentComponent,
+      TxtComponent,
       DateComponent,
       ToolbarComponent
     ]),

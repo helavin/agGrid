@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-img-component',
-  templateUrl: './img-component.component.html',
-  styleUrls: ['./img-component.component.scss']
+  templateUrl: './img.component.html',
+  styleUrls: ['./img.component.scss']
 })
-export class ImgComponentComponent {
+export class ImgComponent {
 
   private params: any;
 

@@ -7,9 +7,9 @@ import 'ag-grid-enterprise';
 // import { map, catchError } from 'rxjs/operators';
 // import { IBloger } from '../bloger';
 import { ReadService } from '../read.service';
-import { ImgComponentComponent } from '../RendererComponents/img-component/img-component.component';
+import { ImgComponent } from '../RendererComponents/img/img.component';
 import { UrlComponentComponent } from '../RendererComponents/url-component/url-component.component';
-import { TxtComponentComponent } from '../RendererComponents/txt-component/txt-component.component';
+import { TxtComponent } from '../RendererComponents/txt-component/txt.component';
 import { DateComponent } from '../RendererComponents/date/date.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
@@ -50,7 +50,7 @@ export class MyGridApplicationComponent { // implements OnInit {
             {
                 colId: '1', headerName: '',
                 field: this.thumbnails,
-                cellRendererFramework: ImgComponentComponent,
+                cellRendererFramework: ImgComponent,
                 width: 100
             },
             {
@@ -66,7 +66,7 @@ export class MyGridApplicationComponent { // implements OnInit {
             },
             {
                 colId: '4', headerName: 'Description', field: 'snippet.description',
-                cellRendererFramework: TxtComponentComponent,
+                cellRendererFramework: TxtComponent,
                 resizable: true, width: 600
             }
         ];

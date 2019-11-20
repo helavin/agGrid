@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TxtComponentComponent } from './txt-component.component';
+import { TxtComponent } from './txt.component';
 
-describe('TxtComponentComponent', () => {
-  let component: TxtComponentComponent;
-  let fixture: ComponentFixture<TxtComponentComponent>;
+describe('TxtComponent', () => {
+  let component: TxtComponent;
+  let fixture: ComponentFixture<TxtComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TxtComponentComponent ]
+      declarations: [ TxtComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TxtComponentComponent);
+    fixture = TestBed.createComponent(TxtComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
