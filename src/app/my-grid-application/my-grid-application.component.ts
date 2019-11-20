@@ -10,7 +10,7 @@ import { ReadService } from '../read.service';
 import { ImgComponentComponent } from '../RendererComponents/img-component/img-component.component';
 import { UrlComponentComponent } from '../RendererComponents/url-component/url-component.component';
 import { TxtComponentComponent } from '../RendererComponents/txt-component/txt-component.component';
-import { DateComponentComponent } from '../RendererComponents/date-component/date-component.component';
+import { DateComponent } from '../RendererComponents/date/date.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 
@@ -55,7 +55,7 @@ export class MyGridApplicationComponent { // implements OnInit {
             },
             {
                 colId: '2', headerName: 'Published on', field: this.publishedAt,
-                cellRendererFramework: DateComponentComponent,
+                cellRendererFramework: DateComponent,
                 width: 115
             },
             {

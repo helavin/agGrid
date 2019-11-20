@@ -13,7 +13,7 @@ import { MyGridApplicationComponent } from './my-grid-application/my-grid-applic
 import { ImgComponentComponent } from './RendererComponents/img-component/img-component.component';
 import { UrlComponentComponent } from './RendererComponents/url-component/url-component.component';
 import { TxtComponentComponent } from './RendererComponents/txt-component/txt-component.component';
-import { DateComponentComponent } from './RendererComponents/date-component/date-component.component';
+import { DateComponent } from './RendererComponents/date/date.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 
@@ -24,7 +24,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     ImgComponentComponent,
     UrlComponentComponent,
     TxtComponentComponent,
-    DateComponentComponent,
+    DateComponent,
     ToolbarComponent
   ],
   imports: [
@@ -34,7 +34,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
       ImgComponentComponent,
       UrlComponentComponent,
       TxtComponentComponent,
-      DateComponentComponent,
+      DateComponent,
       ToolbarComponent
     ]),
   ],

@@ -3,10 +3,10 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-date-component',
-  templateUrl: './date-component.component.html',
-  styleUrls: ['./date-component.component.scss']
+  templateUrl: './date.component.html',
+  styleUrls: ['./date.component.scss']
 })
-export class DateComponentComponent {
+export class DateComponent {
 
   private params: any;
 
