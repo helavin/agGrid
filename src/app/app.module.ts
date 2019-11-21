@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
 
-
 import { AppComponent } from './app.component';
 import { ReadService } from './read.service';
 import { MyGridApplicationComponent } from './my-grid-application/my-grid-application.component';
@@ -15,7 +14,6 @@ import { UrlComponent } from './RendererComponents/url/url.component';
 import { TxtComponent } from './RendererComponents/txt/txt.component';
 import { DateComponent } from './RendererComponents/date/date.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-
 
 @NgModule({
   declarations: [

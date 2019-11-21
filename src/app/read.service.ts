@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-// import { IBloger } from './bloger';
 
 
 @Injectable({
@@ -34,13 +32,5 @@ export class ReadService {
     // console.log(body.items);
     return body.items;
   }
-
-  // readT<T>(model: T | any): Observable<T | T[]> {
-  //   // console.log(this.httpOptions.params.get('url'));
-  //   // return this.http.get<T | T[]>(
-  //   //   this.myHost + '/get-articles' // , this.httpOptions
-  //   // ); // /${model.tableName}`
-  //   return this.http.get<T | T[]>(this.jsonUrl);
-  // }
 
 }

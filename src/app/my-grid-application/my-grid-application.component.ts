@@ -76,7 +76,7 @@ export class MyGridApplicationComponent { // implements OnInit {
                 colId: '4', headerName: 'Description',
                 field: this.bloger.description,
                 cellRendererFramework: TxtComponent,
-                resizable: true, width: 600
+                resizable: true, width: 700
             }
         ];
         this.gridOptions.rowHeight = 60;

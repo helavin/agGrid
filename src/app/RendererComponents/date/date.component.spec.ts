@@ -9,10 +9,10 @@ describe('DateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DateComponent ],
+      declarations: [DateComponent],
       // schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,8 +21,23 @@ describe('DateComponent', () => {
     fixture.detectChanges();
   });
 
+
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+  let dateComponent: DateComponent;
+  const dateComponentSpy = spyOn(dateComponent, 'formatDate');
+
+  // 2011-05-12T20:01:31.000Z
+  dateComponentSpy.and.returnValue('12-05-2011');
+  expect(dateComponentSpy).toBe('12-05-2011');
+  expect(dateComponentSpy).toHaveBeenCalled();
+  // expect(dateComponentSpy.calls.count()).toBe('1');
+  expect(dateComponentSpy.calls.mostRecent().returnValue).toBe('8 as any');
+
+
 
 });
