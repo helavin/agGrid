@@ -7,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UrlComponent {
 
-  private params: any;
-  private watch = 'https://www.youtube.com/watch?v=';
+  private watch: any; // 'https://www.youtube.com/watch?v=';
+  private id: any;
+  private tt: string;
 
   agInit(params: any): void {
-    this.params = params;
+    this.watch = params[0];
+    this.id = params.value;
+    this.tt = params.column.colDef.cellRendererParams[1];
   }
 
 }

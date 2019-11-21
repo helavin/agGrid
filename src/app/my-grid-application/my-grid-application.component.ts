@@ -1,3 +1,4 @@
+import { IBloger } from './../bloger';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GridOptions, Column } from 'ag-grid-community';
 // import { HttpClient, HttpResponseBase } from '@angular/common/http';
@@ -5,7 +6,7 @@ import { GridOptions, Column } from 'ag-grid-community';
 import 'ag-grid-enterprise';
 // import { Observable /*, Subject*/ } from 'rxjs';
 // import { map, catchError } from 'rxjs/operators';
-// import { IBloger } from '../bloger';
+import { Bloger } from '../bloger';
 import { ReadService } from '../read.service';
 import { ImgComponent } from '../RendererComponents/img/img.component';
 import { UrlComponent } from '../RendererComponents/url/url.component';
@@ -31,13 +32,17 @@ export class MyGridApplicationComponent { // implements OnInit {
     // private frameworkComponents;
 
     rowData: any;
-    private thumbnails = 'snippet.thumbnails.default.url';
-    private publishedAt = 'snippet.publishedAt';
-    private title = 'id.videoId';
+
+    bloger: Bloger = {
+        thumbnail: 'snippet.thumbnails.default.url',
+        publishedAt: 'snippet.publishedAt',
+        title: 'snippet.title',
+        openLink: 'https://www.youtube.com/watch?v=',
+        videoId: 'id.videoId',
+        description: 'snippet.description'
+    };
 
     private selectedCount = 0;
-
-    // public blogers: Array<any>; // IBloger[];
 
     constructor(private readService: ReadService) {
         this.gridOptions = {} as GridOptions;
@@ -49,23 +54,23 @@ export class MyGridApplicationComponent { // implements OnInit {
             },
             {
                 colId: '1', headerName: '',
-                field: this.thumbnails,
+                field: this.bloger.thumbnail,
                 cellRendererFramework: ImgComponent,
                 width: 100
             },
             {
-                colId: '2', headerName: 'Published on', field: this.publishedAt,
+                colId: '2', headerName: 'Published on', field: this.bloger.publishedAt,
                 cellRendererFramework: DateComponent,
                 width: 115
             },
             {
-                colId: '3', headerName: 'Video Title', field: this.title,
+                colId: '3', headerName: 'Video Title', field: this.bloger.videoId,
                 cellRendererFramework: UrlComponent,
-                cellRendererParams: 'https://www.youtube.com/watch?v=',
+                cellRendererParams: [this.bloger.openLink, this.bloger.title],
                 width: 400
             },
             {
-                colId: '4', headerName: 'Description', field: 'snippet.description',
+                colId: '4', headerName: 'Description', field: this.bloger.description,
                 cellRendererFramework: TxtComponent,
                 resizable: true, width: 600
             }
@@ -125,7 +130,8 @@ export class MyGridApplicationComponent { // implements OnInit {
                 {
                     name: 'Open in new tab',
                     action: () => {
-                        const url = params.column.colDef.cellRendererParams + params.value;
+                        const url = params.column.colDef.cellRendererParams
+                        +  params.value;
                         window.open(url, '_blank');
                     },
                     cssClasses: ['redFont', 'bold']
