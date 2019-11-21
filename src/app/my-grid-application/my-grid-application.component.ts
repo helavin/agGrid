@@ -13,6 +13,7 @@ import { UrlComponent } from '../RendererComponents/url/url.component';
 import { TxtComponent } from '../RendererComponents/txt/txt.component';
 import { DateComponent } from '../RendererComponents/date/date.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+// import { Action } from 'rxjs/internal/scheduler/Action';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class MyGridApplicationComponent { // implements OnInit {
         thumbnail: 'snippet.thumbnails.default.url',
         publishedAt: 'snippet.publishedAt',
         title: 'snippet.title',
-        openLink: 'https://www.youtube.com/watch?v=',
+        pathLink: 'https://www.youtube.com/watch?v=',
         videoId: 'id.videoId',
         description: 'snippet.description'
     };
@@ -59,18 +60,21 @@ export class MyGridApplicationComponent { // implements OnInit {
                 width: 100
             },
             {
-                colId: '2', headerName: 'Published on', field: this.bloger.publishedAt,
+                colId: '2', headerName: 'Published on',
+                field: this.bloger.publishedAt,
                 cellRendererFramework: DateComponent,
                 width: 115
             },
             {
-                colId: '3', headerName: 'Video Title', field: this.bloger.videoId,
+                colId: '3', headerName: 'Video Title',
+                field: this.bloger.title, // videoId,
                 cellRendererFramework: UrlComponent,
-                cellRendererParams: [this.bloger.openLink, this.bloger.title],
+                cellRendererParams: { pathLink: this.bloger.pathLink },
                 width: 400
             },
             {
-                colId: '4', headerName: 'Description', field: this.bloger.description,
+                colId: '4', headerName: 'Description',
+                field: this.bloger.description,
                 cellRendererFramework: TxtComponent,
                 resizable: true, width: 600
             }
@@ -130,8 +134,9 @@ export class MyGridApplicationComponent { // implements OnInit {
                 {
                     name: 'Open in new tab',
                     action: () => {
-                        const url = params.column.colDef.cellRendererParams
-                        +  params.value;
+                        const url = params.column.colDef.cellRendererParams.pathLink
+                            + params.node.data.id.videoId
+                        console.log(params.node.data.id.videoId);
                         window.open(url, '_blank');
                     },
                     cssClasses: ['redFont', 'bold']
@@ -146,5 +151,3 @@ export class MyGridApplicationComponent { // implements OnInit {
 
 
 }
-
-

@@ -3,7 +3,7 @@ export interface IBloger {
     thumbnail: string;
     publishedAt: string;
     title: string;
-    openLink: string;
+    pathLink: string;
     videoId: string;
     description: string;
 }
@@ -12,7 +12,7 @@ export class Bloger implements IBloger {
     thumbnail: string;
     publishedAt: string;
     title: string;
-    openLink: string;
+    pathLink: string;
     videoId: string;
     description: string;
 
@@ -24,4 +24,3 @@ export class Bloger implements IBloger {
 
     }
 }
-

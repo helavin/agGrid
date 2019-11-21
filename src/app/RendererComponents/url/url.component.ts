@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Column } from 'ag-grid-community';
 
 @Component({
   selector: 'app-url-component',
@@ -6,15 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./url.component.scss']
 })
 export class UrlComponent {
-
-  private watch: any; // 'https://www.youtube.com/watch?v=';
-  private id: any;
-  private tt: string;
+  // private pathLink: string; // 'https://www.youtube.com/watch?v=';
+  private title: string;
+  private id: any
 
   agInit(params: any): void {
-    this.watch = params[0];
+    this.title = params.value;
     this.id = params.value;
-    this.tt = params.column.colDef.cellRendererParams[1];
   }
 
 }
