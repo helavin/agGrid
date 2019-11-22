@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-date-component',
-  templateUrl: './date.component.html',
-  styleUrls: ['./date.component.scss']
+  selector: 'app-publishedAt-component',
+  templateUrl: './publishedAt.component.html',
+  styleUrls: ['./publishedAt.component.scss']
 })
-export class DateComponent {
+export class PublishedAtComponent {
 
   private params: any;
 
@@ -21,10 +21,6 @@ export class DateComponent {
     const datePipe: DatePipe = new DatePipe('en-US');
     const cellDate = datePipe.transform(dateAsString, 'dd-MM-yyyy', 'en-US');
     return cellDate;
-  }
-
-  formatDate2() {
-
   }
 
 }

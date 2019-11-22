@@ -1,21 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DateComponent } from './date.component';
+import { PublishedAtComponent } from './publishedAt.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-describe('DateComponent', () => {
-  let component: DateComponent;
-  let fixture: ComponentFixture<DateComponent>;
+describe('PublishedAtComponent', () => {
+  let component: PublishedAtComponent;
+  let fixture: ComponentFixture<PublishedAtComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DateComponent],
+      declarations: [PublishedAtComponent],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DateComponent);
+    fixture = TestBed.createComponent(PublishedAtComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

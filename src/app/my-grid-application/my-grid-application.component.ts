@@ -1,14 +1,18 @@
-import { IBloger } from './../bloger';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GridOptions, Column } from 'ag-grid-community';
 import 'ag-grid-enterprise';
 import { Bloger } from '../bloger';
-import { ReadService } from '../read.service';
-import { ImgComponent } from '../RendererComponents/img/img.component';
-import { UrlComponent } from '../RendererComponents/url/url.component';
-import { TxtComponent } from '../RendererComponents/txt/txt.component';
-import { DateComponent } from '../RendererComponents/date/date.component';
+import { ReadService } from '../services/read.service';
+// import { ThumbnailComponent } from '../RendererComponents/thumbnail/thumbnail.component';
+import { thumbnailColumn } from "../RendererComponents/thumbnail/thumbnail-column";
+// import { TitleComponent } from '../RendererComponents/title/title.component';
+import { titleColumn } from '../RendererComponents/title/title-column'
+// import { DescriptionComponent } from '../RendererComponents/description/description.component';
+import { descriptionColumn } from "../RendererComponents/description/description-column";
+// import { PublishedAtComponent } from '../RendererComponents/publishedAt/publishedAt.component';
+import { publishedAtColumn } from "../RendererComponents/publishedAt/published-at-column";
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { from } from 'rxjs';
 
 @Component({
     selector: 'app-my-grid-application',
@@ -38,35 +42,16 @@ export class MyGridApplicationComponent {
         this.gridOptions = {} as GridOptions;
         this.gridOptions.columnDefs = [
             {
-                colId: '0', lockPosition: true,
-                checkboxSelection: true, headerCheckboxSelection: true,
+                colId: '0',
+                lockPosition: true,
+                checkboxSelection: true,
+                headerCheckboxSelection: true,
                 width: 35
             },
-            {
-                colId: '1', headerName: '',
-                field: this.bloger.thumbnail,
-                cellRendererFramework: ImgComponent,
-                width: 100
-            },
-            {
-                colId: '2', headerName: 'Published on',
-                field: this.bloger.publishedAt,
-                cellRendererFramework: DateComponent,
-                width: 115
-            },
-            {
-                colId: '3', headerName: 'Video Title',
-                field: this.bloger.title, // videoId,
-                cellRendererFramework: UrlComponent,
-                cellRendererParams: { pathLink: this.bloger.pathLink },
-                width: 400
-            },
-            {
-                colId: '4', headerName: 'Description',
-                field: this.bloger.description,
-                cellRendererFramework: TxtComponent,
-                resizable: true, width: 600
-            }
+            thumbnailColumn,
+            publishedAtColumn,
+            titleColumn,
+            descriptionColumn
         ];
         this.gridOptions.rowHeight = 60;
         this.gridOptions.icons = { 'custom-stats': '<span class="ag-icon ag-icon-custom-stats"></span>' };
