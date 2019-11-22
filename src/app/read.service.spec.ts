@@ -1,50 +1,48 @@
 import { TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ReadService } from './read.service';
 
 describe('ReadService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let readService: ReadService;
+  let httpTestingController: HttpTestingController;
 
-  it('should be created', () => {
-    const service: ReadService = TestBed.get(ReadService);
-    expect(service).toBeTruthy();
+  // beforeEach(() => TestBed.configureTestingModule({}));
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
+    readService = TestBed.get(ReadService);
+    httpTestingController = TestBed.get(HttpTestingController);
   });
 
-  // let appService: ReadService;
-  // const appServiceSpy = spyOn(appService, 'read');
+  afterEach(() => {
+    httpTestingController.verify();
+  });
 
-  // appServiceSpy.and.returnValue(8 as any);
-  // expect(appServiceSpy).toBe(8);
-  // expect(appServiceSpy).toHaveBeenCalled();
-  // expect(appServiceSpy.calls.count()).toBe(1);
-  // expect(appServiceSpy.calls.mostRecent().returnValue).toBe(8 as any);
+  it('should be created', () => {
+    // const service: ReadService = TestBed.get(ReadService);
+    // expect(service).toBeTruthy();
+    expect(readService).toBeTruthy();
+  });
 
-  // appServiceSpy.calls.reset()
+  it('should get url with parameters', () => {
+    const mockResponse = '/assets/items.json';
+      // [{
+      //   items: [
+      //     {
+      //       id: 3
+      //     }
+      //   ]
+      // }];
+    const query = 'testquery';
+    readService.read()
+      .subscribe(r => {
+        expect(r.items.length > 0).toBe(true);
+      });
 
-  // appServiceSpy(3).and.callThrough();
-  // expect(appServiceSpy).toHaveBeenCalledWith('/assets/blogers.json');
-
-  // appServiceSpy.and.callFake(((number: number) => 3 * number) as any);
-  // appServiceSpy(3);
-  // expect(appServiceSpy.calls.mostRecent().returnValue).toBe(9 as any);
-
-  // appServiceSpy('twooo').and.throwError('Argument must be a number');
-  // expect(appServiceSpy).toThrow();
-
-  // appServiceSpy.and.stub();
-
-
-
-
-  // const exampleSpy = jasmine.createSpyObj('ExampleClass', {
-  //   getData: 'Hello',
-  //   // getValue: 1,
-  // });
-
-  // expect(exampleSpy.getValue).toBe(1);
-  // expect(exampleSpy.getValue).toHaveBeenCalled();
-
-  // expect(exampleSpy.getData).toBe('Hello');
-  // expect(exampleSpy.getData).toHaveBeenCalled();
+    const req = httpTestingController.expectOne((r) => r.url.includes(query));
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockResponse);
+  });
 
 });
