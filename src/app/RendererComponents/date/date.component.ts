@@ -23,4 +23,8 @@ export class DateComponent {
     return cellDate;
   }
 
+  formatDate2() {
+
+  }
+
 }

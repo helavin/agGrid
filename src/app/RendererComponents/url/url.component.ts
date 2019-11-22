@@ -9,7 +9,7 @@ import { Column } from 'ag-grid-community';
 export class UrlComponent {
   // private pathLink: string; // 'https://www.youtube.com/watch?v=';
   private title: string;
-  private id: any
+  private id: any;
 
   agInit(params: any): void {
     this.title = params.value;

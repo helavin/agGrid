@@ -8,9 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class ReadService {
 
-  private jsonUrl =
-    // '/assets/blogers.json';
-
+  private jsonUrl = // '/assets/blogers.json';
     'https://www.googleapis.com/youtube/v3/search' +
     '?key=AIzaSyDOfT_BO81aEZScosfTYMruJobmpjqNeEk' +
     '&maxResults=50&type=video&part=snippet&q=john';
@@ -21,6 +19,7 @@ export class ReadService {
     return this.http.get(this.jsonUrl)
       .pipe(
         map((data: HttpResponseBase) => {
+          // console.log(data);
           return this.extractData(data);
         })
       );
@@ -28,7 +27,6 @@ export class ReadService {
 
   private extractData(res: any) {
     const body = res;
-    // console.log('Extracting datas...');
     // console.log(body.items);
     return body.items;
   }

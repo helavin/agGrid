@@ -1,11 +1,7 @@
 import { IBloger } from './../bloger';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GridOptions, Column } from 'ag-grid-community';
-// import { HttpClient, HttpResponseBase } from '@angular/common/http';
-// import { AgGridAngular } from 'ag-grid-angular';
 import 'ag-grid-enterprise';
-// import { Observable /*, Subject*/ } from 'rxjs';
-// import { map, catchError } from 'rxjs/operators';
 import { Bloger } from '../bloger';
 import { ReadService } from '../read.service';
 import { ImgComponent } from '../RendererComponents/img/img.component';
@@ -13,24 +9,17 @@ import { UrlComponent } from '../RendererComponents/url/url.component';
 import { TxtComponent } from '../RendererComponents/txt/txt.component';
 import { DateComponent } from '../RendererComponents/date/date.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
-// import { Action } from 'rxjs/internal/scheduler/Action';
-
 
 @Component({
     selector: 'app-my-grid-application',
     templateUrl: './my-grid-application.component.html',
     styleUrls: ['./my-grid-application.component.scss']
 })
-export class MyGridApplicationComponent { // implements OnInit {
+export class MyGridApplicationComponent {
     private gridOptions: GridOptions;
 
-    // private agGrid: AgGridAngular;
     private gridApi;
     private gridColumnApi;
-
-    // private icons;
-    // private sideBar;
-    // private frameworkComponents;
 
     rowData: any;
 
@@ -76,7 +65,7 @@ export class MyGridApplicationComponent { // implements OnInit {
                 colId: '4', headerName: 'Description',
                 field: this.bloger.description,
                 cellRendererFramework: TxtComponent,
-                resizable: true, width: 700
+                resizable: true, width: 600
             }
         ];
         this.gridOptions.rowHeight = 60;
@@ -97,8 +86,6 @@ export class MyGridApplicationComponent { // implements OnInit {
         this.gridOptions.frameworkComponents = { toolbarComponent: ToolbarComponent };
     }
 
-
-
     // ngOnInit() {
     //     this.rowData = this.readService.read();
     // }
@@ -107,21 +94,13 @@ export class MyGridApplicationComponent { // implements OnInit {
         this.gridColumnApi = params.columnApi;
 
         this.rowData = this.readService.read();
-
-        // params.api.addGlobalListener((type, event) => {
-        //     if (type.indexOf('column') >= 0) {
-        //       console.log('Got column event: ', event);
-        //     }
-        //   });
-
+        console.log(this.rowData);
     }
-
 
     onSelectionChanged(event: any) {
         this.selectedCount = event.api.getSelectedNodes().length;
         this.gridOptions.columnApi.resetColumnState();
     }
-
 
     getContextMenuItems(params: any) {
         let result: any;
@@ -135,7 +114,7 @@ export class MyGridApplicationComponent { // implements OnInit {
                     name: 'Open in new tab',
                     action: () => {
                         const url = params.column.colDef.cellRendererParams.pathLink
-                            + params.node.data.id.videoId
+                            + params.node.data.id.videoId;
                         console.log(params.node.data.id.videoId);
                         window.open(url, '_blank');
                     },
@@ -146,8 +125,5 @@ export class MyGridApplicationComponent { // implements OnInit {
         }
         return result;
     }
-
-
-
 
 }
