@@ -3,38 +3,25 @@ import { GridOptions, Column } from 'ag-grid-community';
 import 'ag-grid-enterprise';
 import { Bloger } from '../bloger';
 import { ReadService } from '../services/read.service';
-// import { ThumbnailComponent } from '../RendererComponents/thumbnail/thumbnail.component';
-import { thumbnailColumn } from "../RendererComponents/thumbnail/thumbnail-column";
-// import { TitleComponent } from '../RendererComponents/title/title.component';
-import { titleColumn } from '../RendererComponents/title/title-column'
-// import { DescriptionComponent } from '../RendererComponents/description/description.component';
-import { descriptionColumn } from "../RendererComponents/description/description-column";
-// import { PublishedAtComponent } from '../RendererComponents/publishedAt/publishedAt.component';
-import { publishedAtColumn } from "../RendererComponents/publishedAt/published-at-column";
+import { thumbnailColumn } from '../RendererComponents/thumbnail/thumbnail-column';
+import { titleColumn } from '../RendererComponents/title/title-column';
+import { descriptionColumn } from '../RendererComponents/description/description-column';
+import { publishedAtColumn } from '../RendererComponents/publishedAt/published-at-column';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { from } from 'rxjs';
 
 @Component({
     selector: 'app-my-grid-application',
-    templateUrl: './my-grid-application.component.html',
-    styleUrls: ['./my-grid-application.component.scss']
+    templateUrl: './grid-application.component.html',
+    styleUrls: ['./grid-application.component.scss']
 })
-export class MyGridApplicationComponent {
+export class GridApplicationComponent {
     private gridOptions: GridOptions;
 
-    private gridApi;
-    private gridColumnApi;
+    private gridApi: any;
+    private gridColumnApi: any;
 
     rowData: any;
-
-    bloger: Bloger = {
-        thumbnail: 'snippet.thumbnails.default.url',
-        publishedAt: 'snippet.publishedAt',
-        title: 'snippet.title',
-        pathLink: 'https://www.youtube.com/watch?v=',
-        videoId: 'id.videoId',
-        description: 'snippet.description'
-    };
 
     private selectedCount = 0;
 

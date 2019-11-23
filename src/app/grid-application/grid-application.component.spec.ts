@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyGridApplicationComponent } from './my-grid-application.component';
+import { GridApplicationComponent } from './grid-application.component';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 
-describe('MyGridApplicationComponent', () => {
-  let component: MyGridApplicationComponent;
-  let fixture: ComponentFixture<MyGridApplicationComponent>;
+describe('GridApplicationComponent', () => {
+  let component: GridApplicationComponent;
+  let fixture: ComponentFixture<GridApplicationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyGridApplicationComponent ],
+      declarations: [ GridApplicationComponent ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyGridApplicationComponent);
+    fixture = TestBed.createComponent(GridApplicationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
