@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GridOptions, Column } from 'ag-grid-community';
 import 'ag-grid-enterprise';
-import { Bloger } from '../bloger';
 import { ReadService } from '../services/read.service';
 import { thumbnailColumn } from '../RendererComponents/thumbnail/thumbnail-column';
 import { titleColumn } from '../RendererComponents/title/title-column';
@@ -24,6 +23,11 @@ export class GridApplicationComponent {
     rowData: any;
 
     private selectedCount = 0;
+
+    private jsonUrl = // '/assets/blogers.json';
+    'https://www.googleapis.com/youtube/v3/search' +
+    '?key=AIzaSyDOfT_BO81aEZScosfTYMruJobmpjqNeEk' +
+    '&maxResults=50&type=video&part=snippet&q=john';
 
     constructor(private readService: ReadService) {
         this.gridOptions = {} as GridOptions;
@@ -61,12 +65,12 @@ export class GridApplicationComponent {
     // ngOnInit() {
     //     this.rowData = this.readService.read();
     // }
+
     onGridReady(params) {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;
-
-        this.rowData = this.readService.read();
-        console.log(this.rowData);
+        this.rowData = this.readService.read(this.jsonUrl);
+        // console.log(this.rowData);
     }
 
     onSelectionChanged(event: any) {

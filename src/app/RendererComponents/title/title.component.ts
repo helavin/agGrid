@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Column } from 'ag-grid-community';
+// import { Column } from 'ag-grid-community';
 
 @Component({
   selector: 'app-title-component',

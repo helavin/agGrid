@@ -2,33 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponseBase } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class ReadService {
 
-  private jsonUrl = // '/assets/blogers.json';
-    'https://www.googleapis.com/youtube/v3/search' +
-    '?key=AIzaSyDOfT_BO81aEZScosfTYMruJobmpjqNeEk' +
-    '&maxResults=50&type=video&part=snippet&q=john';
-
   constructor(private http: HttpClient) { }
 
-  read() {
-    return this.http.get(this.jsonUrl)
+  read(jsonUrl: string) {
+    return this.http.get(jsonUrl)
       .pipe(
-        map((data: HttpResponseBase) => {
-          // console.log(data);
-          return this.extractData(data);
+        map((res: HttpResponseBase) => {
+          const body: any = res;
+          console.log(body.items);
+          return body.items; // (res as any).
         })
       );
   }
-
-  private extractData(res: any) {
-    const body = res;
-    // console.log(body.items);
-    return body.items;
-  }
-
 }

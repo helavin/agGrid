@@ -1,22 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ReadService } from './read.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ReadService', () => {
   let readService: ReadService;
   let httpTestingController: HttpTestingController;
 
 
-  const mockResponse = {
-    kind: 'youtube#searchListResponse',
-    etag: '"p4VTdlkQv3HQeTEaXgvLePAydmU/Xgm2GzBIA-b5d1V1nnS6C70JnHA"',
-    nextPageToken: 'CDIQAA',
-    regionCode: 'BY',
-    pageInfo: {
-      totalResults: 1000000,
-      resultsPerPage: 50
-    },
-    items: [
+  const mockResponse = // {
+    // kind: 'youtube#searchListResponse',
+    // etag: '"p4VTdlkQv3HQeTEaXgvLePAydmU/Xgm2GzBIA-b5d1V1nnS6C70JnHA"',
+    // nextPageToken: 'CDIQAA',
+    // regionCode: 'BY',
+    // pageInfo: {
+    //   totalResults: 1000000,
+    //   resultsPerPage: 50
+    // },
+    // items:
+    [
       {
         kind: 'youtube#searchResult',
         etag: '"p4VTdlkQv3HQeTEaXgvLePAydmU/QtJ4MlYKdN_zTBjfY3xY6mn7ZRg"',
@@ -85,13 +87,16 @@ describe('ReadService', () => {
         }
       }
     ]
-  };
+    // }
+    ;
 
 
   // beforeEach(() => TestBed.configureTestingModule({}));
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule],
+      providers: [ReadService],
+      // schemas: [NO_ERRORS_SCHEMA]
     });
     readService = TestBed.get(ReadService);
     httpTestingController = TestBed.get(HttpTestingController);
@@ -108,9 +113,9 @@ describe('ReadService', () => {
   });
 
   it('should get url with parameters', () => {
-    // const mockResponse = // '/assets/items.json';
+    const jsonUrl = '/assets/blogers.json';
     const query = 'testquery';
-    readService.read()
+    readService.read(jsonUrl)
       .subscribe(r => {
         expect(r.items.length > 0).toBe(true);
       });
