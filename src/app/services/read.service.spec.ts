@@ -4,9 +4,9 @@ import { ReadService } from './read.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ReadService', () => {
-  let readService: ReadService;
+  let service: ReadService;
   let httpTestingController: HttpTestingController;
-
+  const serviceSpy = spyOn(service, 'read');
 
   const mockResponse = // {
     // kind: 'youtube#searchListResponse',
@@ -98,7 +98,7 @@ describe('ReadService', () => {
       providers: [ReadService],
       // schemas: [NO_ERRORS_SCHEMA]
     });
-    readService = TestBed.get(ReadService);
+    service = TestBed.get(ReadService);
     httpTestingController = TestBed.get(HttpTestingController);
   });
 
@@ -107,15 +107,13 @@ describe('ReadService', () => {
   });
 
   it('should be created', () => {
-    // const service: ReadService = TestBed.get(ReadService);
-    // expect(service).toBeTruthy();
-    expect(readService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
 
-  it('should get url with parameters', () => {
+  it('should get data', () => {
     const jsonUrl = '/assets/blogers.json';
     const query = 'testquery';
-    readService.read(jsonUrl)
+    service.read(jsonUrl)
       .subscribe(r => {
         expect(r.items.length > 0).toBe(true);
       });
@@ -123,6 +121,12 @@ describe('ReadService', () => {
     const req = httpTestingController.expectOne((r) => r.url.includes(query));
     expect(req.request.method).toEqual('GET');
     req.flush(mockResponse);
+  });
+
+  it('should be get data2', () => {
+    serviceSpy.and.returnValue('/assets/blogers.json' as any);
+    expect(serviceSpy.calls.mostRecent().returnValue).toBe(mockResponse as any);
+    // expect(serviceSpy).toBe(mockResponse);
   });
 
 });

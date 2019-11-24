@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-publishedAt-component',
+  selector: 'app-published-at-component',
   templateUrl: './publishedAt.component.html',
   styleUrls: ['./publishedAt.component.scss']
 })
