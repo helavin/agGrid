@@ -7,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./title.component.scss']
 })
 export class TitleComponent {
-  // private pathLink: string; // 'https://www.youtube.com/watch?v=';
   private title: string;
+  private pathLink: string;
   private id: any;
 
   agInit(params: any): void {
     this.title = params.value;
-    this.id = params.value;
+    this.pathLink = params.column.colDef.cellRendererParams.pathLink;
+    this.id = params.node.data.id.videoId;
   }
 
 }

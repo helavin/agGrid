@@ -1,5 +1,5 @@
 // import { Column } from 'ag-grid-community';
-import { TitleComponent } from './title.component'
+import { TitleComponent } from './title.component';
 
 export const titleColumn = {
     colId: '3',
