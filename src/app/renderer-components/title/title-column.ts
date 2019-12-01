@@ -4,8 +4,8 @@ import { TitleComponent } from './title.component';
 export const titleColumn = {
     colId: '3',
     headerName: 'Video Title',
-    field: 'snippet.title', // this.bloger.title, // videoId,
+    field: 'snippet.title',
     cellRendererFramework: TitleComponent,
-    cellRendererParams: { pathLink: 'https://www.youtube.com/watch?v=' }, // this.bloger.pathLink
+    cellRendererParams: { pathLink: 'https://www.youtube.com/watch?v=' },
     width: 400
 };

@@ -14,7 +14,7 @@ export class ReadService {
     '?key=AIzaSyDOfT_BO81aEZScosfTYMruJobmpjqNeEk' +
     '&maxResults=50&type=video&part=snippet&q=john';
 
-
+  private pathLink: 'https://www.youtube.com/watch?v=';
   private params: any;
 
   public get Params(): any {
