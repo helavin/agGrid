@@ -111,9 +111,8 @@ describe('ReadService', () => {
   });
 
   it('should get data', () => {
-    const jsonUrl = '/assets/blogers.json';
     const query = 'testquery';
-    service.read(jsonUrl)
+    service.read()
       .subscribe(r => {
         expect(r.items.length > 0).toBe(true);
       });

@@ -1,3 +1,4 @@
+import { ReadService } from './../../services/read.service';
 import { Component, OnInit } from '@angular/core';
 // import { Column } from 'ag-grid-community';
 
@@ -8,13 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TitleComponent {
   private title: string;
-  private pathLink: string;
-  private id: any;
+  private url: string;
+
+  constructor(private readService: ReadService) { }
 
   agInit(params: any): void {
+    this.readService.Params = params;
     this.title = params.value;
-    this.pathLink = params.column.colDef.cellRendererParams.pathLink;
-    this.id = params.node.data.id.videoId;
+    this.url = this.readService.Url;
   }
 
 }

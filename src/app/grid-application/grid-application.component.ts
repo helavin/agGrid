@@ -10,7 +10,6 @@ import { titleColumn } from '../RendererComponents/title/title-column';
 import { descriptionColumn } from '../RendererComponents/description/description-column';
 import { publishedAtColumn } from '../RendererComponents/publishedAt/published-at-column';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
-import { from } from 'rxjs';
 
 @Component({
     selector: 'app-my-grid-application',
@@ -22,17 +21,10 @@ export class GridApplicationComponent implements OnInit {
 
     private gridOptions: GridOptions;
 
-    private gridApi: any;
-    private gridColumnApi: any;
-
     rowData: any;
 
     private selectedCount = 0;
 
-    private jsonUrl = // '/assets/blogers.json';
-        'https://www.googleapis.com/youtube/v3/search' +
-        '?key=AIzaSyDOfT_BO81aEZScosfTYMruJobmpjqNeEk' +
-        '&maxResults=50&type=video&part=snippet&q=john';
 
     constructor(private readService: ReadService) {
         this.gridOptions = {} as GridOptions;
@@ -52,20 +44,16 @@ export class GridApplicationComponent implements OnInit {
                     labelDefault: 'Toolbar',
                     labelKey: 'customStats',
                     iconKey: 'custom-stats',
-                    toolPanel: 'toolbarComponent',
+                    toolPanelFramework: ToolbarComponent
                 }
             ],
             defaultToolPanel: 'customStats',
 
         };
-        this.gridOptions.frameworkComponents = {
-            toolbarComponent: ToolbarComponent,
-            // agColumnHeader: CheckboxComponent
-        };
     }
 
     ngOnInit(): void {
-        this.rowData = this.readService.read(this.jsonUrl);
+        this.rowData = this.readService.read();
     }
 
     onSelectionChanged(event: any) {
@@ -84,15 +72,11 @@ export class GridApplicationComponent implements OnInit {
                 {
                     name: 'Open in new tab',
                     action: () => {
-                        const url = params.column.colDef.cellRendererParams.pathLink
-                            + params.node.data.id.videoId;
-                        console.log(params.node.data.id.videoId);
-                        window.open(url, '_blank');
+                        window.open(this.readService.Url, '_blank');
                     },
                     cssClasses: ['redFont', 'bold']
                 }
             ];
-
         }
         return result;
     }
@@ -102,8 +86,6 @@ export class GridApplicationComponent implements OnInit {
     }
 
     onGridReady(event: { api: GridApi, columnApi: ColumnApi, type: string }): void {
-        this.gridApi = event.api;
-        this.gridColumnApi = event.columnApi;
         this.sizeToFit();
     }
 
