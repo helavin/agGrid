@@ -7,7 +7,7 @@ export const publishedAtColumn = {
   colId: '2', headerName: 'Published on',
   field: 'snippet.publishedAt', // this.bloger.publishedAt,
   cellRendererFramework: PublishedAtComponent,
-  width: 115,
+  width: 170,
 
   sortable: true,
   filter: true,

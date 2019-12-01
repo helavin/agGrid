@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { GridOptions, Column } from 'ag-grid-community';
+import { AgGridAngular } from 'ag-grid-angular';
+import { GridOptions, ColumnApi, GridApi } from 'ag-grid-community';
 import 'ag-grid-enterprise';
 import { ReadService } from '../services/read.service';
+import { CheckboxComponent } from '../RendererComponents/checkbox/checkbox.component';
+import { checkboxColumn } from '../RendererComponents/checkbox/checkbox-column';
 import { thumbnailColumn } from '../RendererComponents/thumbnail/thumbnail-column';
 import { titleColumn } from '../RendererComponents/title/title-column';
 import { descriptionColumn } from '../RendererComponents/description/description-column';
@@ -14,7 +17,9 @@ import { from } from 'rxjs';
     templateUrl: './grid-application.component.html',
     styleUrls: ['./grid-application.component.scss']
 })
-export class GridApplicationComponent {
+export class GridApplicationComponent implements OnInit {
+    @ViewChild('agGrid', { static: true }) agGrid: AgGridAngular;
+
     private gridOptions: GridOptions;
 
     private gridApi: any;
@@ -25,20 +30,14 @@ export class GridApplicationComponent {
     private selectedCount = 0;
 
     private jsonUrl = // '/assets/blogers.json';
-    'https://www.googleapis.com/youtube/v3/search' +
-    '?key=AIzaSyDOfT_BO81aEZScosfTYMruJobmpjqNeEk' +
-    '&maxResults=50&type=video&part=snippet&q=john';
+        'https://www.googleapis.com/youtube/v3/search' +
+        '?key=AIzaSyDOfT_BO81aEZScosfTYMruJobmpjqNeEk' +
+        '&maxResults=50&type=video&part=snippet&q=john';
 
     constructor(private readService: ReadService) {
         this.gridOptions = {} as GridOptions;
         this.gridOptions.columnDefs = [
-            {
-                colId: '0',
-                lockPosition: true,
-                checkboxSelection: true,
-                headerCheckboxSelection: true,
-                width: 35
-            },
+            checkboxColumn,
             thumbnailColumn,
             publishedAtColumn,
             titleColumn,
@@ -59,18 +58,14 @@ export class GridApplicationComponent {
             defaultToolPanel: 'customStats',
 
         };
-        this.gridOptions.frameworkComponents = { toolbarComponent: ToolbarComponent };
+        this.gridOptions.frameworkComponents = {
+            toolbarComponent: ToolbarComponent,
+            // agColumnHeader: CheckboxComponent
+        };
     }
 
-    // ngOnInit() {
-    //     this.rowData = this.readService.read();
-    // }
-
-    onGridReady(params) {
-        this.gridApi = params.api;
-        this.gridColumnApi = params.columnApi;
+    ngOnInit(): void {
         this.rowData = this.readService.read(this.jsonUrl);
-        // console.log(this.rowData);
     }
 
     onSelectionChanged(event: any) {
@@ -100,6 +95,16 @@ export class GridApplicationComponent {
 
         }
         return result;
+    }
+
+    sizeToFit(): void {
+        this.agGrid.api.sizeColumnsToFit();
+    }
+
+    onGridReady(event: { api: GridApi, columnApi: ColumnApi, type: string }): void {
+        this.gridApi = event.api;
+        this.gridColumnApi = event.columnApi;
+        this.sizeToFit();
     }
 
 }
