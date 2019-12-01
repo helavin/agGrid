@@ -3,12 +3,12 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { GridOptions, ColumnApi, GridApi } from 'ag-grid-community';
 import 'ag-grid-enterprise';
 import { ReadService } from '../services/read.service';
-import { CheckboxComponent } from '../RendererComponents/checkbox/checkbox.component';
-import { checkboxColumn } from '../RendererComponents/checkbox/checkbox-column';
-import { thumbnailColumn } from '../RendererComponents/thumbnail/thumbnail-column';
-import { titleColumn } from '../RendererComponents/title/title-column';
-import { descriptionColumn } from '../RendererComponents/description/description-column';
-import { publishedAtColumn } from '../RendererComponents/publishedAt/published-at-column';
+import { CheckboxComponent } from '../renderer-components/checkbox/checkbox.component';
+import { checkboxColumn } from '../renderer-components/checkbox/checkbox-column';
+import { thumbnailColumn } from '../renderer-components/thumbnail/thumbnail-column';
+import { titleColumn } from '../renderer-components/title/title-column';
+import { descriptionColumn } from '../renderer-components/description/description-column';
+import { publishedAtColumn } from '../renderer-components/published-at/published-at-column';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({

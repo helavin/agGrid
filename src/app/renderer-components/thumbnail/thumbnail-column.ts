@@ -1,4 +1,4 @@
-import { ThumbnailComponent } from '../thumbnail/thumbnail.component';
+import { ThumbnailComponent } from './thumbnail.component';
 
 /**
  * Thumbnail column configuration

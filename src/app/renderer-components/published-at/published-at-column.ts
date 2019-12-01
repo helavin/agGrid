@@ -1,4 +1,4 @@
-import { PublishedAtComponent } from '../publishedAt/publishedAt.component';
+import { PublishedAtComponent } from './published-at.component';
 
 /**
  * Published at column configuration

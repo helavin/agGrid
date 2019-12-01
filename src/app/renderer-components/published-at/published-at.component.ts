@@ -3,8 +3,8 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-published-at-component',
-  templateUrl: './publishedAt.component.html',
-  styleUrls: ['./publishedAt.component.scss']
+  templateUrl: './published-at.component.html',
+  styleUrls: ['./published-at.component.scss']
 })
 export class PublishedAtComponent {
 

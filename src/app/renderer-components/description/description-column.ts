@@ -1,4 +1,4 @@
-import { DescriptionComponent } from "../description/description.component";
+import { DescriptionComponent } from './description.component';
 
 /**
  * Description column configuration

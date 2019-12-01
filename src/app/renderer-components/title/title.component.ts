@@ -1,4 +1,4 @@
-import { ReadService } from './../../services/read.service';
+import { ReadService } from '../../services/read.service';
 import { Component, OnInit } from '@angular/core';
 // import { Column } from 'ag-grid-community';
 

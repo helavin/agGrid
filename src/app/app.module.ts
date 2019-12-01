@@ -9,11 +9,11 @@ import 'ag-grid-enterprise';
 import { AppComponent } from './app.component';
 import { ReadService } from './services/read.service';
 import { GridApplicationComponent } from './grid-application/grid-application.component';
-import { CheckboxComponent } from './RendererComponents/checkbox/checkbox.component';
-import { ThumbnailComponent } from './RendererComponents/thumbnail/thumbnail.component';
-import { TitleComponent } from './RendererComponents/title/title.component';
-import { DescriptionComponent } from './RendererComponents/description/description.component';
-import { PublishedAtComponent } from './RendererComponents/publishedAt/publishedAt.component';
+import { CheckboxComponent } from './renderer-components/checkbox/checkbox.component';
+import { ThumbnailComponent } from './renderer-components/thumbnail/thumbnail.component';
+import { TitleComponent } from './renderer-components/title/title.component';
+import { DescriptionComponent } from './renderer-components/description/description.component';
+import { PublishedAtComponent } from './renderer-components/published-at/published-at.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
