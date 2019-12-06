@@ -14,7 +14,7 @@ export class ReadService {
     '?key=AIzaSyDOfT_BO81aEZScosfTYMruJobmpjqNeEk' +
     '&maxResults=50&type=video&part=snippet&q=john';
 
-  private pathLink: 'https://www.youtube.com/watch?v=';
+  // private pathLink: 'https://www.youtube.com/watch?v=';
   private params: any;
 
   public get Params(): any {
@@ -23,8 +23,11 @@ export class ReadService {
   public set Params(v: any) {
     this.params = v;
   }
+
   public get Url(): string {
-    return this.getPathLink() + this.getVideoId();
+    const pathLink = this.params.column.colDef.cellRendererParams.pathLink;
+    const id = this.params.node.data.id.videoId;
+    return pathLink + id;
   }
 
   read() {
@@ -32,16 +35,11 @@ export class ReadService {
       .pipe(
         map((res: HttpResponseBase) => {
           const body: any = res;
+          // TODO: возвращать строготипизированный объект или
+          // массив объектов (Blogger)
           return body.items; // (res as any).
         })
       );
-  }
-
-  getPathLink() {
-    return this.params.column.colDef.cellRendererParams.pathLink as string;
-  }
-  getVideoId() {
-    return this.params.node.data.id.videoId as string;
   }
 
 }

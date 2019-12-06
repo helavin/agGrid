@@ -1,4 +1,4 @@
-import { Component /*, ViewChild, ViewContainerRef, Input, EventEmitter, Output*/ } from '@angular/core';
+import { Component } from '@angular/core';
 import { IToolPanel, IToolPanelParams } from 'ag-grid-community';
 
 @Component({
@@ -21,13 +21,12 @@ export class ToolbarComponent implements IToolPanel {
 
     agInit(params: IToolPanelParams): void {
         this.params = params;
-
-        this.totalRecords = 0;
-        this.selectedRecords = 0;
-
-        this.params.api.addEventListener('modelUpdated', this.updateTotals.bind(this));
+        this.params.api.addEventListener('modelUpdated', () => this.updateTotals());
     }
 
+    // TODO: 1) для работы достаточно скрывать и показывать первую колонку
+    // this.params.api.columnController.columnApi.setColumnVisible('0', isOn);
+    // 2) сбрасывать выделенные значения
     toggleSelection() {
         this.toggle = !this.toggle;
         const cols = [];
@@ -35,7 +34,7 @@ export class ToolbarComponent implements IToolPanel {
             for (let i = 0; i <= 4; i++) {
                 cols.push(this.columns[i]);
             }
-
+            // this.params.api.columnController.columnApi.setColumnVisible('0', isOn);
         } else {
             for (let i = 1; i <= 4; i++) {
                 cols.push(this.columns[i]);
@@ -44,21 +43,9 @@ export class ToolbarComponent implements IToolPanel {
         this.params.api.setColumnDefs(cols);
     }
 
-
     updateTotals(): void {
-        let totalRecords = 0;
-        let selectedRecords = 0;
-
-        this.params.api.forEachNode((rowNode) => {
-            totalRecords += 1;
-
-            if (rowNode.isSelected()) {
-                selectedRecords += 1;
-            }
-        });
-
-        this.totalRecords = totalRecords;
-        this.selectedRecords = selectedRecords;
+        this.totalRecords = this.params.api.getDisplayedRowCount();
+        this.selectedRecords = this.params.api.getSelectedRows().length;
 
         // get all columns to array
         for (let i = 0; i <= 4; i++) {

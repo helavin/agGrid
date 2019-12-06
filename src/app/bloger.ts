@@ -1,4 +1,6 @@
 import { IBloger } from './bloger';
+// TODO: или использовать для типизации ответа с API
+// или удалить
 export interface IBloger {
     thumbnail: string;
     publishedAt: string;

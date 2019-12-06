@@ -1,6 +1,5 @@
 import { ReadService } from '../../services/read.service';
-import { Component, OnInit } from '@angular/core';
-// import { Column } from 'ag-grid-community';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-title-component',

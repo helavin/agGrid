@@ -21,4 +21,6 @@ describe('ThumbnailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // TODO: проверить правильно ли формируется url
 });

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
-import { GridOptions, ColumnApi, GridApi } from 'ag-grid-community';
+import { GridOptions } from 'ag-grid-community';
 import 'ag-grid-enterprise';
 import { ReadService } from '../services/read.service';
 import { CheckboxComponent } from '../renderer-components/checkbox/checkbox.component';
@@ -21,10 +21,11 @@ export class GridApplicationComponent implements OnInit {
 
     private gridOptions: GridOptions;
 
+    // TODO: создать типы, которые будут описывать контракт данных
+    // получаемых с API
     rowData: any;
 
     private selectedCount = 0;
-
 
     constructor(private readService: ReadService) {
         this.gridOptions = {} as GridOptions;
@@ -47,13 +48,13 @@ export class GridApplicationComponent implements OnInit {
                     toolPanelFramework: ToolbarComponent
                 }
             ],
-            defaultToolPanel: 'customStats',
-
+            defaultToolPanel: 'customStats'
         };
     }
 
     ngOnInit(): void {
         this.rowData = this.readService.read();
+        this.agGrid.api.sizeColumnsToFit();
     }
 
     onSelectionChanged(event: any) {
@@ -72,21 +73,17 @@ export class GridApplicationComponent implements OnInit {
                 {
                     name: 'Open in new tab',
                     action: () => {
-                        window.open(this.readService.Url, '_blank');
-                    },
-                    cssClasses: ['redFont', 'bold']
+                        const pathLink = params.column.colDef.cellRendererParams.pathLink;
+                        const id = params.node.data.id.videoId;
+                        window.open(pathLink + id, '_blank');
+                        // TODO: дубликат кода (тут и на app-title-component).
+                        // Логику создания url можно поместить в сервис
+                        // window.open(this.readService.Url, '_blank');
+                    }
                 }
             ];
         }
         return result;
-    }
-
-    sizeToFit(): void {
-        this.agGrid.api.sizeColumnsToFit();
-    }
-
-    onGridReady(event: { api: GridApi, columnApi: ColumnApi, type: string }): void {
-        this.sizeToFit();
     }
 
 }
